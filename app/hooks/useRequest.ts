@@ -10,7 +10,7 @@ import {useState} from 'react';
 const useRequest = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const authHeader = {Authorization: `Basic ${token}`};
+  const authHeader = {Authorization: `${token}`};
 
   const api = axios.create({
     baseURL: `${Constants.API_URL}/${Constants.API_VERSION}/`,
@@ -23,7 +23,7 @@ const useRequest = () => {
       setLoading(true);
       setError(null);
       // if authorization is not added & token is available then add it into API call request.
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `${token}`;
       return config;
     },
     async interceptorError => {
